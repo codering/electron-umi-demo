@@ -1,0 +1,45 @@
+{
+  "name": "electron-umi-demo",
+  "version": "1.0.0",
+  "main": "app/main/main.js",
+  "repository": "https://github.com/codering/electron-umi-demo.git",
+  "author": "codering",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -k -p [{name}] -n '🦄 React,⭐️ Electron,🍔 AppLog' -c 'yellow,magenta,cyan' 'npm run dev:renderer' 'npm run dev:main' 'wait-on http://localhost:8000/ && electron app/main/main'",
+    "dev:main": "cross-env ESLINT=none BROWSER=none COMPRESS=none roadhog build -w",
+    "dev:renderer": "cross-env APP_ROOT=src/renderer BROWSER=none BABEL_POLYFILL=none umi dev",
+    "build": "npm run build:main && npm run build:renderer",
+    "build:main": "cross-env ESLINT=none roadhog build",
+    "build:renderer": "cross-env APP_ROOT=src/renderer BABEL_POLYFILL=none umi build",
+    "pack": "cross-env NODE_ENV=production electron-builder"
+  },
+  "build": {
+    "files": [
+      "./app/**/*"
+    ],
+    "appId": "com.codering.demo-example-electron",
+    "asar": false
+  },
+  "dependencies": {
+    "electron-debug": "^2.0.0",
+    "electron-is": "^3.0.0",
+    "electron-log": "^2.2.17",
+    "electron-store": "^2.0.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "umi-plugin-react": "^1.2.3"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "electron": "^3.0.9",
+    "electron-builder": "^20.36.2",
+    "electron-updater": "^4.0.4",
+    "redbox-react": "^1.6.0",
+    "roadhog": "^2.4.5",
+    "wait-on": "^3.2.0",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
+  }
+}
