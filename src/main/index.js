@@ -1,6 +1,4 @@
-
-import { app, BrowserWindow } from 'electron';
-import { join } from 'path';
+import {app} from 'electron';
 import is from 'electron-is';
 import log from 'electron-log';
 import * as application from './services/application';
